@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1f5c36" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>九寨沟一日游攻略（个人路线版）</title>
+  <style>
+    :root {
+      --bg: #eef6ea;
+      --paper: #f7fbf4;
+      --card: #ffffff;
+      --ink: #1f3a2a;
+      --muted: #5a7263;
+      --line: #c8ddc0;
+      --green: #2f7d4a;
+      --green-deep: #1f5c36;
+      --green-soft: #d9edd4;
+      --orange: #d97706;
+      --orange-soft: #fff4e5;
+      --red: #c2410c;
+      --blue: #1d6fa5;
+      --shadow: 0 10px 30px rgba(31, 58, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, #f4fbe8 0%, transparent 40%),
+        radial-gradient(circle at 90% 10%, #e4f3ff 0%, transparent 35%),
+        linear-gradient(180deg, #eaf5e6 0%, #f4f7f1 45%, #eef3ea 100%);
+      line-height: 1.55;
+      overflow-x: hidden;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .page {
+      width: min(1280px, calc(100% - 32px));
+      margin: 24px auto 48px;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    .mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      gap: 8px;
+      padding: 8px 0 10px;
+      margin: 0 0 4px;
+      background: linear-gradient(180deg, #eaf5e6 70%, transparent);
+    }
+    .mobile-nav a {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      color: var(--green-deep);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }
+
+    /* Header */
+    .hero {
+      background: linear-gradient(135deg, #1f5c36 0%, #2f7d4a 55%, #3d8f5c 100%);
+      color: #fff;
+      border-radius: 24px;
+      padding: 28px 32px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -40px; top: -40px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.55rem, 2.4vw, 2.1rem);
+      letter-spacing: 0.02em;
+    }
+    .hero .sub {
+      margin: 0;
+      opacity: 0.92;
+      font-size: 0.98rem;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .tag {
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    /* Layout */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+      margin-top: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .panel h2 {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+      color: var(--green-deep);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .panel h2 .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      display: inline-block;
+    }
+
+    /* Y Map */
+    .ymap-wrap {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 8px;
+      overflow: hidden;
+    }
+    .ymap-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      cursor: zoom-in;
+    }
+    .ymap-btn {
+      display: block;
+      width: 100%;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: zoom-in;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .ymap-btn:hover .ymap-img { filter: brightness(1.02); }
+    .ymap-btn.thumb::after { display: none; }
+    .ymap-btn.thumb { aspect-ratio: auto; }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .tip-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+    .tip-card h3 {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      color: var(--green-deep);
+    }
+    .tip-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+    .tip-card li { margin: 4px 0; }
+
+    /* Timeline */
+    .timeline {
+      max-height: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 12px;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .step:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(31,58,42,.08);
+    }
+    .step.highlight {
+      border-color: #86c49a;
+      background: linear-gradient(180deg, #f3faf1, #fff);
+    }
+    .num {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .step.highlight .num { background: var(--orange); }
+    .step-body .time {
+      font-size: 0.78rem;
+      color: var(--orange);
+      font-weight: 700;
+    }
+    .step-body .title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin: 2px 0;
+    }
+    .step-body .desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    .badge.bus { background: #dbeafe; color: #1d4ed8; }
+    .badge.walk { background: #ffedd5; color: #c2410c; }
+    .badge.key { background: #dcfce7; color: #166534; }
+
+    /* Inline thumbs in timeline */
+    .step-thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .thumb {
+      position: relative;
+      margin: 0;
+      border: 0;
+      padding: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: zoom-in;
+      background: #e5efe3;
+      aspect-ratio: 4 / 3;
+      display: block;
+      width: 100%;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .25s ease;
+    }
+    .thumb:hover img { transform: scale(1.06); }
+    .thumb::after {
+      content: "🔍";
+      position: absolute;
+      right: 6px;
+      bottom: 6px;
+      font-size: 0.7rem;
+      background: rgba(0,0,0,.45);
+      color: #fff;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      opacity: 0.85;
+    }
+    .thumb-cap {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.3;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10, 20, 14, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex !important; }
+    .lightbox-inner {
+      position: relative;
+      max-width: min(1100px, 96vw);
+      max-height: 92vh;
+      cursor: default;
+    }
+    .lightbox-inner img {
+      max-width: 100%;
+      max-height: 82vh;
+      display: block;
+      margin: 0 auto;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      object-fit: contain;
+      background: #111;
+    }
+    .lightbox-cap {
+      color: #e8f5e9;
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      background: #fff;
+      color: #1f3a2a;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,.92);
+      color: #1f3a2a;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .lightbox-prev { left: -56px; }
+    .lightbox-next { right: -56px; }
+    @media (max-width: 900px) {
+      .lightbox-prev { left: 4px; }
+      .lightbox-next { right: 4px; }
+      .lightbox-close { top: 8px; right: 8px; }
+    }
+
+    .panel.timeline-panel {
+      max-height: calc(100vh - 120px);
+      overflow: auto;
+      position: sticky;
+      top: 12px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Photo sections */
+    .section {
+      margin-top: 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--line);
+    }
+    .section-head h2 {
+      margin: 0;
+      color: var(--green-deep);
+      font-size: 1.2rem;
+    }
+    .section-head .meta {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .photos.two { grid-template-columns: repeat(2, 1fr); }
+    .photo-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .photo-card button.thumb,
+    .photo-card .zoom-trigger {
+      aspect-ratio: auto;
+      height: 180px;
+      border-radius: 0;
+    }
+    .photo-card.tall button.thumb,
+    .photo-card.tall .zoom-trigger { height: 220px; }
+    .photo-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      background: #e5efe3;
+      cursor: zoom-in;
+    }
+    .photo-card.tall img { height: 220px; }
+    .photo-card .cap {
+      padding: 10px 12px;
+      font-size: 0.86rem;
+    }
+    .photo-card .cap strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .photo-card .cap span {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .note {
+      margin-top: 12px;
+      background: var(--orange-soft);
+      border-left: 4px solid var(--orange);
+      border-radius: 0 12px 12px 0;
+      padding: 10px 14px;
+      color: #7c2d12;
+      font-size: 0.88rem;
+    }
+
+    .footer-tips {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .ftip {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .ftip .emoji {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+    .ftip strong {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+    .ftip span {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .print-hint {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 980px) {
+      .main-grid { grid-template-columns: 1fr; }
+      .panel.timeline-panel {
+        position: static;
+        max-height: none;
+        overflow: visible;
+      }
+      .photos, .photos.two, .tips-grid, .footer-tips {
+        grid-template-columns: 1fr 1fr;
+      }
+      .mobile-nav { display: flex; }
+    }
+    @media (max-width: 640px) {
+      .page {
+        width: calc(100% - 20px);
+        margin: 10px auto 28px;
+      }
+      .hero {
+        padding: 18px 16px;
+        border-radius: 18px;
+      }
+      .hero h1 { font-size: 1.28rem; line-height: 1.35; }
+      .hero .sub { font-size: 0.88rem; }
+      .tag { font-size: 0.78rem; padding: 5px 10px; }
+      .panel {
+        padding: 14px;
+        border-radius: 14px;
+      }
+      .panel h2 { font-size: 1rem; }
+      .tips-grid,
+      .footer-tips,
+      .photos,
+      .photos.two {
+        grid-template-columns: 1fr;
+      }
+      .step {
+        grid-template-columns: 32px 1fr;
+        gap: 8px;
+        padding: 12px;
+      }
+      .num { width: 32px; height: 32px; font-size: 0.82rem; }
+      .step-body .title { font-size: 0.95rem; }
+      .step-body .desc { font-size: 0.86rem; }
+      .step-thumbs {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .thumb { min-height: 96px; border-radius: 12px; }
+      .lightbox {
+        padding: 12px;
+        padding-top: max(12px, env(safe-area-inset-top));
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+      }
+      .lightbox-inner img { max-height: 72vh; border-radius: 10px; }
+      .lightbox-close {
+        top: 0;
+        right: 0;
+        width: 44px;
+        height: 44px;
+      }
+      .lightbox-nav {
+        width: 44px;
+        height: 44px;
+        top: auto;
+        bottom: 8px;
+        transform: none;
+        background: rgba(255,255,255,.95);
+      }
+      .lightbox-prev { left: 12px; }
+      .lightbox-next { right: 12px; }
+      .lightbox-cap {
+        margin-top: 10px;
+        margin-bottom: 56px;
+        font-size: 0.88rem;
+        padding: 0 8px;
+      }
+      .ftip { padding: 12px; }
+      .print-hint { font-size: 0.75rem; padding: 0 8px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; margin: 0; }
+      .mobile-nav { display: none !important; }
+      .step:hover { transform: none; box-shadow: none; }
+      .panel, .section, .ftip { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="mobile-nav" aria-label="快捷导航">
+      <a href="#map">看地图</a>
+      <a href="#itinerary">看行程</a>
+    </nav>
+    <header class="hero">
+      <h1>九寨沟一日游攻略（个人路线版）</h1>
+      <p class="sub">以地图为指引｜中线树正先徒步，午餐后右线精华，再换乘左线经典</p>
+      <div class="hero-tags">
+        <span class="tag">建议：景区观光车 + 步行结合</span>
+        <span class="tag">树正寨下车 · 中线坐左边</span>
+        <span class="tag">右线坐右边</span>
+        <span class="tag">全程约 8–9 小时</span>
+      </div>
+    </header>
+
+    <div class="main-grid">
+      <!-- Left: Map + tips -->
+      <section class="panel" id="map">
+        <h2><span class="dot"></span>景区路线地图</h2>
+        <div class="ymap-wrap">
+          <button type="button" class="ymap-btn thumb" data-full="html_assets/ymap_clean.jpg" data-cap="九寨沟Y型路线地图">
+            <img class="ymap-img" src="html_assets/ymap_clean.jpg" alt="九寨沟Y型路线地图（已去掉图例与时间线）" loading="lazy" />
+          </button>
+        </div>
+        <p style="margin:8px 0 0;font-size:.8rem;color:var(--muted);text-align:center">点击地图可放大查看</p>
+
+        <div class="tips-grid">
+          <div class="tip-card">
+            <h3>路线亮点</h3>
+            <ul>
+              <li><strong>先中线：</strong>树正寨下车，避开人流徒步</li>
+              <li><strong>强推：</strong>卧龙海转角栈道 · 五花海色块</li>
+              <li><strong>右线：</strong>五花海 → 珍珠滩建议徒步</li>
+              <li><strong>左线：</strong>长海 + 五彩池是关键</li>
+            </ul>
+          </div>
+          <div class="tip-card">
+            <h3>温馨提示</h3>
+            <ul>
+              <li>海拔约 2000–3100m，避免剧烈运动，注意高原反应</li>
+              <li>观光车循环运行，留意末班回程时间</li>
+              <li>右线景观车建议<strong>坐右边</strong>；中线进沟建议<strong>坐左边</strong></li>
+              <li>不乱丢垃圾，听从工作人员指引</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Timeline -->
+      <aside class="panel timeline-panel" id="itinerary">
+        <h2><span class="dot"></span>一日行程（按我的路线）</h2>
+        <p style="margin:0 0 10px;font-size:.82rem;color:var(--muted)">点击缩略图可放大观看</p>
+        <div class="timeline">
+          <article class="step highlight">
+            <div class="num">1</div>
+            <div class="step-body">
+              <div class="time">上午 · 中线</div>
+              <div class="title">入园，树正寨下车 <span class="badge bus">车</span></div>
+              <div class="desc">跟工作人员说「树正寨下车」；进沟景观车<strong>坐左边</strong></div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/map_overview.jpg" data-cap="九寨沟游玩攻略地图">
+                  <img src="html_assets/map_overview.jpg" alt="路线地图" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">路线总览地图</span>
+            </div>
+          </article>
+          <article class="step">
+            <div class="num">2</div>
+            <div class="step-body">
+              <div class="time">上午 · 徒步</div>
+              <div class="title">木栈道 → 老虎海 <span class="badge walk">步行</span></div>
+              <div class="desc">沿木栈道步行到老虎海</div>
+            </div>
+          </article>
+          <article class="step highlight">
+            <div class="num">3</div>
+            <div class="step-body">
+              <div class="time">上午 · 徒步</div>
+              <div class="title">水边栈道往回走 <span class="badge walk">步行</span></div>
+              <div class="desc">经树正瀑布、藏式木屋</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/shuzheng_pubu.jpg" data-cap="树正瀑布">
+                  <img src="html_assets/shuzheng_pubu.jpg" alt="树正瀑布" loading="lazy" />
+                </button>
+                <button type="button" class="thumb" data-full="html_assets/zhusu.jpg" data-cap="藏式木屋">
+                  <img src="html_assets/zhusu.jpg" alt="藏式木屋" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">树正瀑布 · 藏式木屋</span>
+            </div>
+          </article>
+          <article class="step highlight">
+            <div class="num">4</div>
+            <div class="step-body">
+              <div class="time">上午 · 徒步</div>
+              <div class="title">树正群海 → 双龙海（内圈） <span class="badge walk">步行</span></div>
+              <div class="desc">这段路像在画中游</div>
+            </div>
+          </article>
+          <article class="step highlight">
+            <div class="num">5</div>
+            <div class="step-body">
+              <div class="time">上午 · 强推</div>
+              <div class="title">卧龙海小众转角栈道 <span class="badge key">必拍</span></div>
+              <div class="desc">转角栈道拍出来很漂亮</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/wolonghai.jpg" data-cap="卧龙海转角栈道">
+                  <img src="html_assets/wolonghai.jpg" alt="卧龙海转角栈道" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">卧龙海 · 最佳拍摄角度</span>
+            </div>
+          </article>
+          <article class="step">
+            <div class="num">6</div>
+            <div class="step-body">
+              <div class="time">上午收尾</div>
+              <div class="title">双龙海上车 <span class="badge bus">车</span></div>
+              <div class="desc">本段在双龙海结束（有景观车站）→ 去诺日朗中心站</div>
+            </div>
+          </article>
+          <article class="step highlight">
+            <div class="num">7</div>
+            <div class="step-body">
+              <div class="time">午餐</div>
+              <div class="title">诺日朗中心站吃饭 <span class="badge key">餐饮</span></div>
+              <div class="desc">风味街餐饮多，吃完在中心站乘车</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/lunch.jpg" data-cap="诺日朗风味街午餐">
+                  <img src="html_assets/lunch.jpg" alt="诺日朗风味街" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">诺日朗风味街</span>
+            </div>
+          </article>
+          <article class="step">
+            <div class="num">8</div>
+            <div class="step-body">
+              <div class="time">下午 · 右线</div>
+              <div class="title">先去右线游玩 <span class="badge bus">车</span></div>
+              <div class="desc">右线景观车<strong>坐右边</strong></div>
+            </div>
+          </article>
+          <article class="step highlight">
+            <div class="num">9</div>
+            <div class="step-body">
+              <div class="time">右线①</div>
+              <div class="title">箭竹海下车 <span class="badge key">第一站</span></div>
+              <div class="desc">右线第一站，看海子与草浪</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/jianzhuhai.jpg" data-cap="箭竹海">
+                  <img src="html_assets/jianzhuhai.jpg" alt="箭竹海" loading="lazy" />
+                </button>
+                <button type="button" class="thumb" data-full="html_assets/jianzhuhai_cao.jpg" data-cap="箭竹海草浪河水">
+                  <img src="html_assets/jianzhuhai_cao.jpg" alt="草浪河水" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">箭竹海 · 草浪河水</span>
+            </div>
+          </article>
+          <article class="step">
+            <div class="num">10</div>
+            <div class="step-body">
+              <div class="time">右线②</div>
+              <div class="title">熊猫海</div>
+              <div class="desc">碧蓝色的海，有可能看到水獭</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/xiongmaohai.jpg" data-cap="熊猫海·水獭">
+                  <img src="html_assets/xiongmaohai.jpg" alt="熊猫海水獭" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">熊猫海 · 水獭</span>
+            </div>
+          </article>
+          <article class="step">
+            <div class="num">11</div>
+            <div class="step-body">
+              <div class="time">右线③</div>
+              <div class="title">坐车前往五花海 <span class="badge bus">车</span></div>
+              <div class="desc">向五花海方向坐车</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/wuhuahai.jpg" data-cap="五花海">
+                  <img src="html_assets/wuhuahai.jpg" alt="五花海" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">五花海方向</span>
+            </div>
+          </article>
+          <article class="step highlight">
+            <div class="num">12</div>
+            <div class="step-body">
+              <div class="time">右线精华</div>
+              <div class="title">五花海 + 右栈道色块 <span class="badge key">最美</span></div>
+              <div class="desc">官方公认最漂亮的海；看活水色块、印象派画作</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/wuhuahai_sekuai.jpg" data-cap="五花海活水色块">
+                  <img src="html_assets/wuhuahai_sekuai.jpg" alt="活水色块" loading="lazy" />
+                </button>
+                <button type="button" class="thumb" data-full="html_assets/wuhuahai_yinxiang.jpg" data-cap="五花海印象派画作">
+                  <img src="html_assets/wuhuahai_yinxiang.jpg" alt="印象派画作" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">活水色块 · 印象派画作</span>
+            </div>
+          </article>
+          <article class="step highlight">
+            <div class="num">13</div>
+            <div class="step-body">
+              <div class="time">右线徒步</div>
+              <div class="title">五花海 → 珍珠滩瀑布 <span class="badge walk">建议徒步</span></div>
+              <div class="desc">无名海子 → 珍珠滩 → 瀑布</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/wuming.jpg" data-cap="无名海子">
+                  <img src="html_assets/wuming.jpg" alt="无名海子" loading="lazy" />
+                </button>
+                <button type="button" class="thumb" data-full="html_assets/zhenzhutan.jpg" data-cap="珍珠滩">
+                  <img src="html_assets/zhenzhutan.jpg" alt="珍珠滩" loading="lazy" />
+                </button>
+                <button type="button" class="thumb" data-full="html_assets/zhenzhupubu.jpg" data-cap="珍珠滩瀑布">
+                  <img src="html_assets/zhenzhupubu.jpg" alt="珍珠滩瀑布" loading="lazy" />
+                </button>
+                <button type="button" class="thumb" data-full="html_assets/zhenzhupubu_fukan.jpg" data-cap="珍珠滩瀑布俯瞰">
+                  <img src="html_assets/zhenzhupubu_fukan.jpg" alt="珍珠滩瀑布俯瞰" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">无名海子 · 珍珠滩 · 瀑布</span>
+            </div>
+          </article>
+          <article class="step">
+            <div class="num">14</div>
+            <div class="step-body">
+              <div class="time">换乘</div>
+              <div class="title">回中心站，换成左线 <span class="badge bus">车</span></div>
+              <div class="desc">乘车返回诺日朗，换乘左线景观车</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/map_left.jpg" data-cap="换乘左线路线图">
+                  <img src="html_assets/map_left.jpg" alt="换乘左线" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">换乘左线示意</span>
+            </div>
+          </article>
+          <article class="step highlight">
+            <div class="num">15</div>
+            <div class="step-body">
+              <div class="time">左线①</div>
+              <div class="title">长海 <span class="badge key">大场面</span></div>
+              <div class="desc">约 20 分钟车程；母亲河，视野最开阔</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/changhai.jpg" data-cap="长海·群山怀抱">
+                  <img src="html_assets/changhai.jpg" alt="长海" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">长海 · 群山怀抱</span>
+            </div>
+          </article>
+          <article class="step highlight">
+            <div class="num">16</div>
+            <div class="step-body">
+              <div class="time">左线②</div>
+              <div class="title">五彩池 <span class="badge key">色彩</span></div>
+              <div class="desc">最小、颜色最艳，穿透力蓝色</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/wucaichi.jpg" data-cap="五彩池·穿透力蓝色">
+                  <img src="html_assets/wucaichi.jpg" alt="五彩池" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">五彩池</span>
+            </div>
+          </article>
+          <article class="step">
+            <div class="num">17</div>
+            <div class="step-body">
+              <div class="time">左线③</div>
+              <div class="title">诺日朗瀑布 <span class="badge bus">车</span></div>
+              <div class="desc">乘坐景观车到达诺日朗瀑布</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/nuorilang_pubu.jpg" data-cap="诺日朗瀑布">
+                  <img src="html_assets/nuorilang_pubu.jpg" alt="诺日朗瀑布" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">诺日朗瀑布</span>
+            </div>
+          </article>
+          <article class="step">
+            <div class="num">18</div>
+            <div class="step-body">
+              <div class="time">可选 / 返程 / 晚餐</div>
+              <div class="title">芦苇海 · 出园 · 如意林卡 <span class="badge bus">车</span></div>
+              <div class="desc">有时间可去芦苇海；返程预留约 3 小时。晚餐可选牦牛肉火锅（如意林卡）；住宿可选荷叶/树正/则查洼寨</div>
+              <div class="step-thumbs">
+                <button type="button" class="thumb" data-full="html_assets/luweihai.jpg" data-cap="芦苇海">
+                  <img src="html_assets/luweihai.jpg" alt="芦苇海" loading="lazy" />
+                </button>
+                <button type="button" class="thumb" data-full="html_assets/huoguo.jpg" data-cap="如意林卡牦牛肉火锅">
+                  <img src="html_assets/huoguo.jpg" alt="牦牛肉火锅" loading="lazy" />
+                </button>
+                <button type="button" class="thumb" data-full="html_assets/zhusu.jpg" data-cap="景区内三寨住宿">
+                  <img src="html_assets/zhusu.jpg" alt="景区内住宿" loading="lazy" />
+                </button>
+              </div>
+              <span class="thumb-cap">芦苇海 · 如意林卡火锅 · 景区内住宿</span>
+            </div>
+          </article>
+        </div>
+      </aside>
+    </div>
+
+    <section class="section" id="after">
+      <div class="section-head">
+        <h2>返程提醒</h2>
+        <div class="meta">附图已嵌在上方右侧行程对应步骤中，点击缩略图可放大</div>
+      </div>
+      <div class="note">
+        返回成都请预留约 <strong>3 小时</strong>坐大巴去高铁站。
+        小程序购票去<strong>松潘</strong>（约有 22:00 班次）；九寨黄龙方向末班较早（约 19:00）。
+        景区内住宿可选荷叶寨 / 树正寨 / 则查洼寨，方便次日续玩，但餐饮少、夜晚较黑。
+      </div>
+    </section>
+
+    <div class="footer-tips">
+      <div class="ftip">
+        <div class="emoji">📷</div>
+        <strong>最佳拍摄</strong>
+        <span>清晨 / 傍晚软光更出片</span>
+      </div>
+      <div class="ftip">
+        <div class="emoji">🧥</div>
+        <strong>穿着建议</strong>
+        <span>冲锋衣 + 舒适徒步鞋</span>
+      </div>
+      <div class="ftip">
+        <div class="emoji">🍽️</div>
+        <strong>用餐位置</strong>
+        <span>诺日朗中心站最方便</span>
+      </div>
+      <div class="ftip">
+        <div class="emoji">⏱️</div>
+        <strong>游玩时长</strong>
+        <span>约 8–9 小时（不含排队）</span>
+      </div>
+    </div>
+
+    <p class="print-hint">本地打开本 HTML 即可浏览 · 点击行程缩略图可放大 · 左右键切换 · Esc 关闭</p>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="图片放大预览">
+    <div class="lightbox-inner">
+      <button type="button" class="lightbox-close" id="lbClose" aria-label="关闭">×</button>
+      <button type="button" class="lightbox-nav lightbox-prev" id="lbPrev" aria-label="上一张">‹</button>
+      <button type="button" class="lightbox-nav lightbox-next" id="lbNext" aria-label="下一张">›</button>
+      <img id="lbImg" src="" alt="" />
+      <div class="lightbox-cap" id="lbCap"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const thumbs = Array.from(document.querySelectorAll('.thumb[data-full]'));
+      const box = document.getElementById('lightbox');
+      const img = document.getElementById('lbImg');
+      const cap = document.getElementById('lbCap');
+      const btnClose = document.getElementById('lbClose');
+      const btnPrev = document.getElementById('lbPrev');
+      const btnNext = document.getElementById('lbNext');
+      let index = 0;
+
+      function openAt(i) {
+        if (!thumbs.length) return;
+        index = (i + thumbs.length) % thumbs.length;
+        const t = thumbs[index];
+        img.src = t.dataset.full;
+        img.alt = t.dataset.cap || '';
+        cap.textContent = t.dataset.cap || '';
+        box.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        box.classList.remove('open');
+        img.removeAttribute('src');
+        document.body.style.overflow = '';
+      }
+
+      thumbs.forEach((t, i) => {
+        t.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openAt(i);
+        });
+      });
+
+      btnClose.addEventListener('click', (e) => { e.stopPropagation(); close(); });
+      btnPrev.addEventListener('click', (e) => { e.stopPropagation(); openAt(index - 1); });
+      btnNext.addEventListener('click', (e) => { e.stopPropagation(); openAt(index + 1); });
+      box.addEventListener('click', close);
+      box.querySelector('.lightbox-inner').addEventListener('click', (e) => e.stopPropagation());
+
+      document.addEventListener('keydown', (e) => {
+        if (!box.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') openAt(index - 1);
+        if (e.key === 'ArrowRight') openAt(index + 1);
+      });
+    })();
+  </script>
+</body>
+</html>
