@@ -1,0 +1,4 @@
+# 仅发布网页所需；大图原件可本地保留
+*.mdc
+.DS_Store
+Thumbs.db
